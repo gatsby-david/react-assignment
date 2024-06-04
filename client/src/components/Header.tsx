@@ -5,13 +5,28 @@ import { Form } from "./form";
 import { ErrorMessage } from "./form/ErrorMessage";
 import { Button } from "./Button";
 
-const StyledDiv = styled.header`
+const StyledHeader = styled.header`
     display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
 `;
 
 const FormWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    margin-top: 8px;
+`;
+
+const FirstHeaderLine = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+
+    h1 {
+        font-weight: bold;
+        font-size: 20px;
+    }
 `;
 
 type HeaderProps = {
@@ -25,17 +40,18 @@ export const Header = (props: HeaderProps) => {
     const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
 
     return (
-        <StyledDiv>
-            <h1>{children}</h1>
-            <Button
-                onClick={() => {
-                    setIsFormOpen(true);
-                }}
-                color="success"
-            >
-                <PlusIcon />
-            </Button>
-
+        <StyledHeader>
+            <FirstHeaderLine>
+                <h1>{children}</h1>
+                <Button
+                    onClick={() => {
+                        setIsFormOpen(true);
+                    }}
+                    color="success"
+                >
+                    <PlusIcon />
+                </Button>
+            </FirstHeaderLine>
             <FormWrapper>
                 {isFormOpen && (
                     <Form
@@ -46,6 +62,6 @@ export const Header = (props: HeaderProps) => {
                 )}
                 {isAPIerror && <ErrorMessage>Error occured, please try again.</ErrorMessage>}
             </FormWrapper>
-        </StyledDiv>
+        </StyledHeader>
     );
 };
