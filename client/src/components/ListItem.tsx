@@ -9,8 +9,9 @@ import { Button } from "./Button";
 const Todo = styled.div`
     display: flex;
     align-items: center;
-    margin: 5px 0;
+    padding: 4px 0;
     justify-content: space-between;
+    min-height: 30px;
 `;
 
 const TodoWrapper = styled.div`
@@ -21,10 +22,15 @@ const TodoWrapper = styled.div`
 const LeftPart = styled.div`
     display: flex;
     align-items: center;
+    flex-grow: 1;
+
+    &:hover + div {
+        display: flex;
+    }
 `;
 
 const ActionButtons = styled.div`
-    display: flex;
+    display: none;
     align-items: center;
 `;
 
