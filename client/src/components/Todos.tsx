@@ -34,6 +34,15 @@ export const Todos = () => {
         },
     });
 
+    const deleteMutation = useMutation({
+        mutationFn: ({ id }: { id: number }) => {
+            return axios.delete(`http://localhost:3000/items/${id}`);
+        },
+        onSuccess: () => {
+            refetch();
+        },
+    });
+
     if (isPending) return "Loading...";
 
     if (error) return "An error has occurred: " + error.message;
@@ -47,6 +56,9 @@ export const Todos = () => {
                 const doneToggle = (isDone: boolean) => {
                     toggleMutation.mutate({ isDone, id: todo.id });
                 };
+                const deleteItem = () => {
+                    deleteMutation.mutate({ id: todo.id });
+                };
                 return (
                     <ListItem
                         label={todo.label}
@@ -54,6 +66,7 @@ export const Todos = () => {
                         key={todo.createdAt}
                         onItemLabelEdit={editItem}
                         onItemDoneToggle={doneToggle}
+                        onItemDelete={deleteItem}
                     />
                 );
             })}
