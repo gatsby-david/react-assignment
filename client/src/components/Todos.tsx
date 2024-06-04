@@ -1,4 +1,4 @@
-import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { List } from "./List";
 import { ListItem } from "./ListItem";
 import axios from "axios";
@@ -49,27 +49,31 @@ export const Todos = () => {
 
     return (
         <List>
-            {data.map((todo: Todo) => {
-                const editItem = (label: string) => {
-                    editMutation.mutate({ label, id: todo.id });
-                };
-                const doneToggle = (isDone: boolean) => {
-                    toggleMutation.mutate({ isDone, id: todo.id });
-                };
-                const deleteItem = () => {
-                    deleteMutation.mutate({ id: todo.id });
-                };
-                return (
-                    <ListItem
-                        label={todo.label}
-                        isDone={todo.isDone}
-                        key={todo.createdAt}
-                        onItemLabelEdit={editItem}
-                        onItemDoneToggle={doneToggle}
-                        onItemDelete={deleteItem}
-                    />
-                );
-            })}
+            {data
+                .sort((a: Todo, b: Todo) => {
+                    return Number(a.isDone) - Number(b.isDone) || a.createdAt < b.createdAt;
+                })
+                .map((todo: Todo) => {
+                    const editItem = (label: string) => {
+                        editMutation.mutate({ label, id: todo.id });
+                    };
+                    const doneToggle = (isDone: boolean) => {
+                        toggleMutation.mutate({ isDone, id: todo.id });
+                    };
+                    const deleteItem = () => {
+                        deleteMutation.mutate({ id: todo.id });
+                    };
+                    return (
+                        <ListItem
+                            label={todo.label}
+                            isDone={todo.isDone}
+                            key={todo.createdAt}
+                            onItemLabelEdit={editItem}
+                            onItemDoneToggle={doneToggle}
+                            onItemDelete={deleteItem}
+                        />
+                    );
+                })}
         </List>
     );
 };
