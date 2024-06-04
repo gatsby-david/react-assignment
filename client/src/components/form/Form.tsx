@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { Input } from "./Input";
 import { ErrorMessage } from "./ErrorMessage";
+import { Button } from "../Button";
 
 const FormStyled = styled.form`
     display: flex;
@@ -37,12 +38,12 @@ export const Form = (props: FormProps) => {
         >
             <div>
                 <Input value={inputValue} onValueChange={(value) => setInputValue(value)} />
-                <button type={"submit"}>
+                <Button type={"submit"} color="success">
                     <CheckIcon />
-                </button>
-                <button type={"reset"}>
+                </Button>
+                <Button type={"reset"} color="error">
                     <Cross1Icon />
-                </button>
+                </Button>
             </div>
             {error && <ErrorMessage>Please fill the input first.</ErrorMessage>}
         </FormStyled>

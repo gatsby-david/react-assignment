@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Checkbox } from "./Checkbox";
 import { Form } from "./form";
 import { useState } from "react";
+import { Button } from "./Button";
 
 const Todo = styled.div`
     display: flex;
@@ -25,10 +26,6 @@ const LeftPart = styled.div`
 const ActionButtons = styled.div`
     display: flex;
     align-items: center;
-
-    button {
-        margin-left: 8px;
-    }
 `;
 
 const Label = styled.label`
@@ -62,12 +59,12 @@ export const ListItem = (props: ListItemProp) => {
                     <Label>{label}</Label>
                 </LeftPart>
                 <ActionButtons>
-                    <button onClick={() => onItemDelete()}>
+                    <Button onClick={() => onItemDelete()} color="error">
                         <TrashIcon />
-                    </button>
-                    <button onClick={() => setIsFormOpen(!isFormOpen)}>
+                    </Button>
+                    <Button onClick={() => setIsFormOpen(!isFormOpen)} color="success">
                         <Pencil1Icon />
-                    </button>
+                    </Button>
                 </ActionButtons>
             </Todo>
             {isFormOpen && (
