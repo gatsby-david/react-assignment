@@ -1,11 +1,8 @@
 import { Container } from "./components/Container";
 import { Layout } from "./components/Layout";
-import { List } from "./components/List";
-import { Footer } from "./components/Footer";
 import { ThemeProvider } from "./components/providers/ThemeProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Todos } from "./components/Todos";
-import { HeaderWrapper } from "./components/HeaderWrapper";
+import { Main } from "./components/Main";
 
 export const App = () => {
     const queryClient = new QueryClient();
@@ -15,13 +12,7 @@ export const App = () => {
             <QueryClientProvider client={queryClient}>
                 <Container>
                     <Layout>
-                        <div>
-                            <HeaderWrapper />
-                            <List>
-                                <Todos />
-                            </List>
-                        </div>
-                        <Footer />
+                        <Main />
                     </Layout>
                 </Container>
             </QueryClientProvider>
