@@ -10,12 +10,14 @@ export const App = () => (
     <ThemeProvider>
         <Container>
             <Layout>
-                <Header onItemAdd={() => console.warn("unimplemented")}>To Do app</Header>
-                <List>
-                    <ListItem label="item" isDone={true} />
-                    <ListItem label="item" isDone={true} />
-                    <ListItem label="item" isDone={true} />
-                </List>
+                <div>
+                    <Header onItemAdd={() => console.warn("unimplemented")}>To Do app</Header>
+                    <List>
+                        <ListItem label="item" isDone={true} />
+                        <ListItem label="item" isDone={true} />
+                        <ListItem label="item" isDone={true} />
+                    </List>
+                </div>
                 <Footer />
             </Layout>
         </Container>
