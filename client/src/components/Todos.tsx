@@ -1,7 +1,8 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { List } from "./List";
 import { ListItem } from "./ListItem";
 import axios from "axios";
+import { useTodos } from "../hooks/react-query/use-todos";
 
 export type Todo = {
     label: string;
@@ -11,10 +12,7 @@ export type Todo = {
 };
 
 export const Todos = () => {
-    const { isPending, error, data, refetch } = useQuery({
-        queryKey: ["todos"],
-        queryFn: () => axios.get("http://localhost:3000/items").then((res) => res.data),
-    });
+    const { isPending, error, data, refetch } = useTodos();
 
     const editMutation = useMutation({
         mutationFn: ({ label, id }: { label: string; id: number }) => {
