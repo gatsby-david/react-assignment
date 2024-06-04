@@ -1,11 +1,11 @@
 import { Container } from "./components/Container";
 import { Layout } from "./components/Layout";
 import { List } from "./components/List";
-import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { ThemeProvider } from "./components/providers/ThemeProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Todos } from "./components/Todos";
+import { HeaderWrapper } from "./components/HeaderWrapper";
 
 export const App = () => {
     const queryClient = new QueryClient();
@@ -16,7 +16,7 @@ export const App = () => {
                 <Container>
                     <Layout>
                         <div>
-                            <Header onItemAdd={() => console.warn("unimplemented")}>To Do app</Header>
+                            <HeaderWrapper />
                             <List>
                                 <Todos />
                             </List>
