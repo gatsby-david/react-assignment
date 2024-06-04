@@ -46,12 +46,19 @@ export type ListItemProp = {
 export const ListItem = (props: ListItemProp) => {
     const { label, isDone, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
     const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
+    const [isChecked, setIsChecked] = useState<boolean>(isDone);
 
     return (
         <TodoWrapper>
             <Todo>
                 <LeftPart>
-                    <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
+                    <Checkbox
+                        checked={isChecked}
+                        onCheckedChange={() => {
+                            onItemDoneToggle(!isChecked);
+                            setIsChecked(!isChecked);
+                        }}
+                    />
                     <Label>{label}</Label>
                 </LeftPart>
                 <ActionButtons>
