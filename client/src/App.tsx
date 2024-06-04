@@ -4,8 +4,8 @@ import { List } from "./components/List";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { ThemeProvider } from "./components/providers/ThemeProvider";
-import { ListItem } from "./components/ListItem";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Todos } from "./components/Todos";
 
 export const App = () => {
     const queryClient = new QueryClient();
@@ -18,9 +18,7 @@ export const App = () => {
                         <div>
                             <Header onItemAdd={() => console.warn("unimplemented")}>To Do app</Header>
                             <List>
-                                <ListItem label="item" isDone={true} />
-                                <ListItem label="item" isDone={true} />
-                                <ListItem label="item" isDone={true} />
+                                <Todos />
                             </List>
                         </div>
                         <Footer />
