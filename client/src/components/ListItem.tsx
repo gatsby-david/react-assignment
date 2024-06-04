@@ -1,12 +1,27 @@
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
-import React from "react";
 import styled from "styled-components";
 
 import { Checkbox } from "./Checkbox";
 
-const StyledDiv = styled.div`
+const Todo = styled.div`
     display: flex;
     align-items: center;
+    margin: 5px 0;
+    justify-content: space-between;
+`;
+
+const LeftPart = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const ActionButtons = styled.div`
+    display: flex;
+    align-items: center;
+
+    button {
+        margin-left: 8px;
+    }
 `;
 
 const Label = styled.label`
@@ -25,15 +40,19 @@ export const ListItem = (props: LiteeItemProp) => {
     const { label, isDone, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
 
     return (
-        <StyledDiv>
-            <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
-            <Label>{label}</Label>
-            <button>
-                <TrashIcon />
-            </button>
-            <button onClick={() => onItemDelete()}>
-                <Pencil1Icon />
-            </button>
-        </StyledDiv>
+        <Todo>
+            <LeftPart>
+                <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
+                <Label>{label}</Label>
+            </LeftPart>
+            <ActionButtons>
+                <button>
+                    <TrashIcon />
+                </button>
+                <button onClick={() => onItemDelete()}>
+                    <Pencil1Icon />
+                </button>
+            </ActionButtons>
+        </Todo>
     );
 };
